@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="sex_spinner_array">
+        <item>ชาย</item>
+        <item>หญิง</item>
+    </string-array>
+
+</resources>
