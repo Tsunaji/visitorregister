@@ -3,4 +3,14 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="text">อีเมล<font color="red">*</font></string>
+    <string name="text2">อายุ<font color="red">*</font></string>
+    <string name="text3">เพศ<font color="red">*</font></string>
+    <string name="text4">ประเภทเกมที่ชอบเล่นบน Mobile<font color="red">*</font></string>
+    <string name="text5">ยกตัวอย่างเกมที่ชื่นชอบบน Mobile (1-3เกม)<font color="red">*</font></string>
+    <string name="text6">ความรู้สึกในการเล่นเกมนี้ครั้งแรก<font color="red">*</font></string>
+    <string name="text7">คุณจะจ่ายเงินซื้อ Item ในเกมหรือไม่<font color="red">*</font></string>
+    <string name="text8">คุณได้กด Bubble ขณะเล่นหรือไม่ (Bubble ที่อยู่ตรงกลางจอ)<font color="red">*</font></string>
+    <string name="text9">คุณชอบอะไรในเกมนี้มากที่สุด<font color="red">*</font></string>
+    <string name="text10">คุณเคยเติมเงินประเภทเกม Casual, Puzzle เกมหรือเปล่า / ถ้าเคยเกมอะไร / และเติมสูงสุดกี่บาท<font color="red">*</font></string>
 </resources>
