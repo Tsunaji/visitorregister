@@ -4,6 +4,7 @@ package com.digitopolis.visitorregister;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                             new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("Error");
                     builder.setMessage("กรอกข้อมูลไม่ครบ กรุณาตรวจสอบใหม่อีกครั้ง");
-                    builder.setNegativeButton(getString(android.R.string.cancel),
+                    builder.setNegativeButton(getString(android.R.string.ok),
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -169,6 +170,21 @@ public class MainActivity extends AppCompatActivity {
 
             if(check){
                 saveData(Data);
+                AlertDialog.Builder builder =
+                        new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Complete");
+                builder.setMessage("บันทึกข้อมูลเรียบร้อย");
+                builder.setNegativeButton(getString(android.R.string.ok),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                                finish();
+                                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                builder.show();
             }
         }
         catch (Exception e){
@@ -177,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                     new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("Error");
             builder.setMessage("กรอกข้อมูลไม่ครบ กรุณาตรวจสอบใหม่อีกครั้ง");
-            builder.setNegativeButton(getString(android.R.string.cancel),
+            builder.setNegativeButton(getString(android.R.string.ok),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -195,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => "+c.getTime());
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy:MM:dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate = dateFormat.format(c.getTime());
         String formattedTime = timeFormat.format(c.getTime());

@@ -43,7 +43,19 @@ public class MenuActivity  extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       saveCSV();
+                        saveCSV();
+                        AlertDialog.Builder builder2 =
+                                new AlertDialog.Builder(MenuActivity.this);
+                        builder2.setTitle("Complete");
+                        builder2.setMessage("export ข้อมูลเรียบร้อย");
+                        builder2.setNegativeButton(getString(android.R.string.ok),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        builder2.show();
                     }
                 });
         builder.setNegativeButton(getString(android.R.string.cancel),
