@@ -103,7 +103,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(SurveyData.Column.EMAIL, surveyData.getEmail());
         values.put(SurveyData.Column.AGE, surveyData.getAge());
         values.put(SurveyData.Column.SEX, surveyData.getSex());
-        values.put(SurveyData.Column.FAV_GAME_TYPE, surveyData.getFacvGameType());
+        values.put(SurveyData.Column.FAV_GAME_TYPE, surveyData.getFavGameType());
         values.put(SurveyData.Column.FAV_GAME_EX, surveyData.getFavGameEx());
         values.put(SurveyData.Column.QUESTION_1, surveyData.getQuestion1());
         values.put(SurveyData.Column.QUESTION_2, surveyData.getQuestion2());

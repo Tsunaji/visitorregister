@@ -39,7 +39,7 @@ public class SurveyData {
     private String email;
     private String age;
     private String sex;
-    private String facvGameType;
+    private String favGameType;
     private String favGameEx;
     private String question1;
     private String question2;
@@ -105,12 +105,12 @@ public class SurveyData {
         this.sex = sex;
     }
 
-    public String getFacvGameType() {
-        return facvGameType;
+    public String getFavGameType() {
+        return favGameType;
     }
 
-    public void setFacvGameType(String facvGameType) {
-        this.facvGameType = facvGameType;
+    public void setFavGameType(String favGameType) {
+        this.favGameType = favGameType;
     }
 
     public String getFavGameEx() {

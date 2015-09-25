@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
         surveyData.setEmail(data[0]);
         surveyData.setAge(data[1]);
         surveyData.setSex(data[2]);
-        surveyData.setFacvGameType(data[3]);
+        surveyData.setFavGameType(data[3]);
         surveyData.setFavGameEx(data[4]);
         surveyData.setQuestion1(data[5]);
         surveyData.setQuestion2(data[6]);
