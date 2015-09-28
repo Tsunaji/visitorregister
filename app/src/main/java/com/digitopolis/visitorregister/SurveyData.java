@@ -17,7 +17,6 @@ public class SurveyData {
         public static final String AGE = "'อายุ'";
         public static final String SEX = "'เพศ'";
         public static final String FAV_GAME_TYPE = "'ประเภทเกมที่ชอบเล่นบน mobile'";
-        public static final String FAV_GAME_EX = "'ยกตัวอย่างเกมที่ชื่นชอบบน mobile'";
         public static final String QUESTION_1 = "'ความสนุก'";
         public static final String QUESTION_2 = "'ความยากในการเล่น'";
         public static final String QUESTION_3 = "'ความสวยงามของกราฟฟิคและ animation'";
@@ -33,6 +32,7 @@ public class SurveyData {
         public static final String ADVICE = "'ข้อเสนอแนะ'";
         public static final String DATE = "'วัน'";
         public static final String TIME = "'เวลา'";
+        public static final String UNIQUE_ID = "'unique_id'";
     }
 
     private int id;
@@ -40,7 +40,6 @@ public class SurveyData {
     private String age;
     private String sex;
     private String favGameType;
-    private String favGameEx;
     private String question1;
     private String question2;
     private String question3;
@@ -56,6 +55,15 @@ public class SurveyData {
     private String advice;
     private String date;
     private String time;
+    private String unique_id;
+
+    public String getUnique_id() {
+        return unique_id;
+    }
+
+    public void setUnique_id(String unique_id) {
+        this.unique_id = unique_id;
+    }
 
     public int getId() {
         return id;
@@ -111,14 +119,6 @@ public class SurveyData {
 
     public void setFavGameType(String favGameType) {
         this.favGameType = favGameType;
-    }
-
-    public String getFavGameEx() {
-        return favGameEx;
-    }
-
-    public void setFavGameEx(String favGameEx) {
-        this.favGameEx = favGameEx;
     }
 
     public String getQuestion1() {

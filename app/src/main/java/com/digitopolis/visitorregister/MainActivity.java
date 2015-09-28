@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -34,7 +35,7 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText email, age, favGameType, favGameEx, paid, bubbleClick, likeGame, everPaid, advice;
+    EditText email, age, favGameType, paid, bubbleClick, likeGame, everPaid, advice;
     RadioGroup sex, q1, q2, q3, q4, q5, q6, q7, q8;
     Button submit;
     DBHelper mHelper;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.e("VERSION : ", "1.0");
         InitInitial();
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -97,10 +98,9 @@ public class MainActivity extends AppCompatActivity {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(email, InputMethodManager.SHOW_IMPLICIT);
 
-        age = (EditText) findViewById(R.id.editText2);
-        favGameType = (EditText) findViewById(R.id.editText3);
-        favGameEx = (EditText) findViewById(R.id.editText4);
-        paid = (EditText) findViewById(R.id.editText5);
+        age = (EditText) findViewById(R.id.editText3);
+        favGameType = (EditText) findViewById(R.id.editText4);
+        paid = (EditText) findViewById(R.id.editText2);
         bubbleClick = (EditText) findViewById(R.id.editText6);
         likeGame = (EditText) findViewById(R.id.editText7);
         everPaid = (EditText) findViewById(R.id.editText8);
@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
                     age.getText().toString(),
                     radiobutton.getText().toString(),
                     favGameType.getText().toString(),
-                    favGameEx.getText().toString(),
                     radiobutton2.getText().toString(),
                     radiobutton3.getText().toString(),
                     radiobutton4.getText().toString(),
@@ -214,31 +213,33 @@ public class MainActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => "+c.getTime());
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate = dateFormat.format(c.getTime());
         String formattedTime = timeFormat.format(c.getTime());
+        String android_id = Settings.Secure.getString(getBaseContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
 
         surveyData.setEmail(data[0]);
         surveyData.setAge(data[1]);
         surveyData.setSex(data[2]);
         surveyData.setFavGameType(data[3]);
-        surveyData.setFavGameEx(data[4]);
-        surveyData.setQuestion1(data[5]);
-        surveyData.setQuestion2(data[6]);
-        surveyData.setQuestion3(data[7]);
-        surveyData.setQuestion4(data[8]);
-        surveyData.setQuestion5(data[9]);
-        surveyData.setQuestion6(data[10]);
-        surveyData.setQuestion7(data[11]);
-        surveyData.setQuestion8(data[12]);
-        surveyData.setPaid(data[13]);
-        surveyData.setBubbleClick(data[14]);
-        surveyData.setLikeGame(data[15]);
-        surveyData.setEverPaid(data[16]);
-        surveyData.setAdvice(data[17]);
+        surveyData.setQuestion1(data[4]);
+        surveyData.setQuestion2(data[5]);
+        surveyData.setQuestion3(data[6]);
+        surveyData.setQuestion4(data[7]);
+        surveyData.setQuestion5(data[8]);
+        surveyData.setQuestion6(data[9]);
+        surveyData.setQuestion7(data[10]);
+        surveyData.setQuestion8(data[11]);
+        surveyData.setPaid(data[12]);
+        surveyData.setBubbleClick(data[13]);
+        surveyData.setLikeGame(data[14]);
+        surveyData.setEverPaid(data[15]);
+        surveyData.setAdvice(data[16]);
         surveyData.setDate(formattedDate);
         surveyData.setTime(formattedTime);
+        surveyData.setUnique_id(android_id);
         if (ID == -1) {
             mHelper.addSurveyData(surveyData);
         } else {

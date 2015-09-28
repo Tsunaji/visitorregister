@@ -1,8 +1,10 @@
 package com.digitopolis.visitorregister;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -43,11 +45,16 @@ public class MenuActivity  extends AppCompatActivity {
 
     ArrayList<SurveyData> surveyDataArrayList;
     SurveyData surveyData;
+    private static final String MY_PREFS = "my_prefs";
+    SharedPreferences shared;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_layout);
+
+        // Get SharedPreferences
+        shared = getSharedPreferences(MY_PREFS,Context.MODE_PRIVATE);
     }
 
     public void eventSurvey(View view){
@@ -128,61 +135,56 @@ public class MenuActivity  extends AppCompatActivity {
                 String favGameType = new String(bytes, "UTF-8");
 
                 bytes = curCSV.getString(5).getBytes();
-                String favGameEx= new String(bytes, "UTF-8");
-
-                bytes = curCSV.getString(6).getBytes();
                 String question1 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(7).getBytes();
+                bytes = curCSV.getString(6).getBytes();
                 String question2 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(8).getBytes();
+                bytes = curCSV.getString(7).getBytes();
                 String question3 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(9).getBytes();
+                bytes = curCSV.getString(8).getBytes();
                 String question4 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(10).getBytes();
+                bytes = curCSV.getString(9).getBytes();
                 String question5 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(11).getBytes();
+                bytes = curCSV.getString(10).getBytes();
                 String question6 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(12).getBytes();
+                bytes = curCSV.getString(11).getBytes();
                 String question7 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(13).getBytes();
+                bytes = curCSV.getString(12).getBytes();
                 String question8 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(14).getBytes();
+                bytes = curCSV.getString(13).getBytes();
                 String paid = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(15).getBytes();
+                bytes = curCSV.getString(14).getBytes();
                 String bubble = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(16).getBytes();
+                bytes = curCSV.getString(15).getBytes();
                 String likeGame = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(17).getBytes();
+                bytes = curCSV.getString(16).getBytes();
                 String everPaid = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(18).getBytes();
+                bytes = curCSV.getString(17).getBytes();
                 String advice = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(19).getBytes();
+                bytes = curCSV.getString(18).getBytes();
                 String date = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(20).getBytes();
+                bytes = curCSV.getString(19).getBytes();
                 String time = new String(bytes, "UTF-8");
 
-                String arrStr[] ={curCSV.getString(0),email,age,sex,favGameType,favGameEx,question1,question2,
-                        question3,question4,question5,question6,question7,question8,paid,bubble,likeGame,
-                        everPaid,advice,date,time};
+                bytes = curCSV.getString(20).getBytes();
+                String unique_id = new String(bytes, "UTF-8");
 
-                Log.e("TagString",arrStr[0]+" "+arrStr[1]+" "+arrStr[2]+" "+arrStr[3]+" "+arrStr[4]+" "+arrStr[5]
-                        +" "+arrStr[6]+" "+arrStr[7]+" "+arrStr[8]+" "+arrStr[9]+" "+arrStr[10]+" "+arrStr[11]
-                        +" "+arrStr[12]+" "+arrStr[13]+" "+arrStr[14]+" "+arrStr[15]+" "+arrStr[16]+" "+arrStr[17]
-                        +" "+arrStr[18]+" "+arrStr[19]);
+                String arrStr[] ={curCSV.getString(0),email,age,sex,favGameType,question1,question2,
+                        question3,question4,question5,question6,question7,question8,paid,bubble,likeGame,
+                        everPaid,advice,date,time,unique_id};
 
                 csvWrite.writeNext(arrStr);
             }
@@ -197,106 +199,43 @@ public class MenuActivity  extends AppCompatActivity {
 
 
     public void eventUpload(View view){
-        new HttpAsyncTask().execute();
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(MenuActivity.this);
+        builder.setTitle("Confirm");
+        builder.setMessage("คุณต้องการจะ upload ข้อมูลใช่หรือไม่ ?");
+        builder.setPositiveButton(getString(android.R.string.ok),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        new HttpAsyncTask().execute();
+                        AlertDialog.Builder builder2 =
+                                new AlertDialog.Builder(MenuActivity.this);
+                        builder2.setTitle("Complete");
+                        builder2.setMessage("upload ข้อมูลเรียบร้อย");
+                        builder2.setNegativeButton(getString(android.R.string.ok),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        builder2.show();
+                    }
+                });
+        builder.setNegativeButton(getString(android.R.string.cancel),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        builder.show();
     }
 
-//    public static String POST(String url, ArrayList<SurveyData> surveyDataArrayList){
-//        InputStream inputStream = null;
-//        String result = "";
-//        try {
-//
-//            // 1. create HttpClient
-//            HttpClient httpclient = new DefaultHttpClient();
-//            URLConnection urlConnection = ;
-//            // 2. make POST request to the given URL
-//            HttpPost httpPost = new HttpPost(url);
-//
-//            String json = "";
-//
-//            // 3. build jsonObject
-//            JSONObject jsonObject;
-//            JSONArray jsonArray = new JSONArray();
-//            for(int i=0;i<surveyDataArrayList.size();i++){
-//                jsonObject = new JSONObject();
-//                jsonObject.put("id", surveyDataArrayList.get(i).getId()+"");
-//                jsonObject.put("email", surveyDataArrayList.get(i).getEmail());
-//                jsonObject.put("age", surveyDataArrayList.get(i).getAge());
-//                jsonObject.put("sex", surveyDataArrayList.get(i).getSex());
-//                jsonObject.put("favGameType", surveyDataArrayList.get(i).getFavGameType());
-//                jsonObject.put("favGameEx", surveyDataArrayList.get(i).getFavGameEx());
-//                jsonObject.put("question1", surveyDataArrayList.get(i).getQuestion1());
-//                jsonObject.put("question2", surveyDataArrayList.get(i).getQuestion2());
-//                jsonObject.put("question3", surveyDataArrayList.get(i).getQuestion3());
-//                jsonObject.put("question4", surveyDataArrayList.get(i).getQuestion4());
-//                jsonObject.put("question5", surveyDataArrayList.get(i).getQuestion5());
-//                jsonObject.put("question6", surveyDataArrayList.get(i).getQuestion6());
-//                jsonObject.put("question7", surveyDataArrayList.get(i).getQuestion7());
-//                jsonObject.put("question8", surveyDataArrayList.get(i).getQuestion8());
-//                jsonObject.put("paid", surveyDataArrayList.get(i).getPaid());
-//                jsonObject.put("bubble", surveyDataArrayList.get(i).getBubbleClick());
-//                jsonObject.put("likeGame", surveyDataArrayList.get(i).getLikeGame());
-//                jsonObject.put("everPaid", surveyDataArrayList.get(i).getEverPaid());
-//                jsonObject.put("advice", surveyDataArrayList.get(i).getAdvice());
-//                jsonObject.put("date", surveyDataArrayList.get(i).getDate());
-//                jsonObject.put("time", surveyDataArrayList.get(i).getTime());
-//
-//                jsonArray.put(jsonObject);
-//            }
-//
-//            // 4. convert JSONObject to JSON to String
-//            JSONObject jsonObject1 = new JSONObject();
-//            jsonObject1.put("survey_data", jsonArray);
-//
-//
-//            // ** Alternative way to convert Person object to JSON string usin Jackson Lib
-//            // ObjectMapper mapper = new ObjectMapper();
-//            // json = mapper.writeValueAsString(person);
-//
-//            // 5. set json to StringEntity
-//            StringEntity se = new StringEntity(jsonObject1);
-//
-//            // 6. set httpPost Entity
-//            httpPost.setEntity(se);
-//
-//            // 7. Set some headers to inform server about the type of the content
-//            httpPost.setHeader("Accept", "application/json");
-//            httpPost.setHeader("Content-type", "application/json");
-//
-//            // 8. Execute POST request to the given URL
-//            HttpResponse httpResponse = httpclient.execute(httpPost);
-//
-//            // 9. receive response as inputStream
-//            inputStream = httpResponse.getEntity().getContent();
-//
-//            // 10. convert inputstream to string
-//            if(inputStream != null)
-//                result = convertInputStreamToString(inputStream);
-//            else
-//                result = "Did not work!";
-//
-//        } catch (Exception e) {
-//            Log.d("InputStream", e.getLocalizedMessage());
-//        }
-//
-//        // 11. return result
-//        return result;
-//    }
-
-//    public boolean isConnected(){
-//        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Activity.CONNECTIVITY_SERVICE);
-//        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-//        if (networkInfo != null && networkInfo.isConnected())
-//            return true;
-//        else
-//            return false;
-//    }
-
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-        StringBuilder sb = new StringBuilder();
-        DataOutputStream printout;
         @Override
         protected String doInBackground(String... urls) {
-            String url = "http://192.168.1.2/insert_json.php";
+            String url = "http://192.168.1.11/insert_json.php";
             try {
 
                 //get all db data
@@ -312,7 +251,6 @@ public class MenuActivity  extends AppCompatActivity {
                     jsonObject.put("age", surveyDataArrayList.get(i).getAge());
                     jsonObject.put("sex", surveyDataArrayList.get(i).getSex());
                     jsonObject.put("favGameType", surveyDataArrayList.get(i).getFavGameType());
-                    jsonObject.put("favGameEx", surveyDataArrayList.get(i).getFavGameEx());
                     jsonObject.put("question1", surveyDataArrayList.get(i).getQuestion1());
                     jsonObject.put("question2", surveyDataArrayList.get(i).getQuestion2());
                     jsonObject.put("question3", surveyDataArrayList.get(i).getQuestion3());
@@ -328,14 +266,15 @@ public class MenuActivity  extends AppCompatActivity {
                     jsonObject.put("advice", surveyDataArrayList.get(i).getAdvice());
                     jsonObject.put("date", surveyDataArrayList.get(i).getDate());
                     jsonObject.put("time", surveyDataArrayList.get(i).getTime());
+                    jsonObject.put("unique_id", surveyDataArrayList.get(i).getUnique_id());
                     jsonArray.put(jsonObject);
                 }
 
                 JSONObject jsonObject1 = new JSONObject();
                 jsonObject1.put("survey_data", jsonArray);
 
-                JSONObject jsonObject2 = new JSONObject();
-                jsonObject2.put("Test", "TEST");
+//                JSONObject jsonObject2 = new JSONObject();
+//                jsonObject2.put("Test", "TEST");
 
                 URL object = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) object.openConnection();
@@ -354,7 +293,7 @@ public class MenuActivity  extends AppCompatActivity {
 
                 //Send request
                 OutputStreamWriter writer = new OutputStreamWriter(con.getOutputStream());
-                String data = jsonObject1.toString();
+                String data = jsonArray.toString();
                 writer.write(data);
                 writer.flush();
                 writer.close();
@@ -402,16 +341,26 @@ public class MenuActivity  extends AppCompatActivity {
         DBHelper dbhelper = new DBHelper(getApplicationContext());
         try
         {
-            String id = SurveyData.Column.ID;
+//            SharedPreferences.Editor editor = shared.edit();
+//            editor.clear();
+//            editor.commit();
+            int number = shared.getInt("query_position", -1);
+            String query_position = (number)+"";
+            Log.e("Before position", query_position);
             SQLiteDatabase db = dbhelper.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT * FROM surveydata WHERE "+id+">3",null);
+            Cursor curCSV = db.rawQuery("SELECT * FROM surveydata WHERE " + SurveyData.Column.ID + ">" + query_position + "", null);
+//            Log.e("QUERY DATA ", "SELECT * FROM surveydata WHERE " + SurveyData.Column.ID + "=" + query_position + "");
             surveyDataArrayList = new ArrayList<>();
+            String lastId= number+"";
             while(curCSV.moveToNext())
             {
                 //Which column you want to exprort
                 surveyData = new SurveyData();
 
                 byte[] bytes = null;
+                bytes = curCSV.getString(0).getBytes();
+                lastId = new String(bytes, "UTF-8");
+
                 bytes = curCSV.getString(1).getBytes();
                 String email= new String(bytes, "UTF-8");
 
@@ -425,59 +374,58 @@ public class MenuActivity  extends AppCompatActivity {
                 String favGameType = new String(bytes, "UTF-8");
 
                 bytes = curCSV.getString(5).getBytes();
-                String favGameEx= new String(bytes, "UTF-8");
-
-                bytes = curCSV.getString(6).getBytes();
                 String question1 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(7).getBytes();
+                bytes = curCSV.getString(6).getBytes();
                 String question2 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(8).getBytes();
+                bytes = curCSV.getString(7).getBytes();
                 String question3 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(9).getBytes();
+                bytes = curCSV.getString(8).getBytes();
                 String question4 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(10).getBytes();
+                bytes = curCSV.getString(9).getBytes();
                 String question5 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(11).getBytes();
+                bytes = curCSV.getString(10).getBytes();
                 String question6 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(12).getBytes();
+                bytes = curCSV.getString(11).getBytes();
                 String question7 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(13).getBytes();
+                bytes = curCSV.getString(12).getBytes();
                 String question8 = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(14).getBytes();
+                bytes = curCSV.getString(13).getBytes();
                 String paid = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(15).getBytes();
+                bytes = curCSV.getString(14).getBytes();
                 String bubble = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(16).getBytes();
+                bytes = curCSV.getString(15).getBytes();
                 String likeGame = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(17).getBytes();
+                bytes = curCSV.getString(16).getBytes();
                 String everPaid = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(18).getBytes();
+                bytes = curCSV.getString(17).getBytes();
                 String advice = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(19).getBytes();
+                bytes = curCSV.getString(18).getBytes();
                 String date = new String(bytes, "UTF-8");
 
-                bytes = curCSV.getString(20).getBytes();
+                bytes = curCSV.getString(19).getBytes();
                 String time = new String(bytes, "UTF-8");
+
+                bytes = curCSV.getString(20).getBytes();
+                String unique_id = new String(bytes, "UTF-8");
 
                 surveyData.setId(Integer.parseInt(curCSV.getString(0)));
                 surveyData.setEmail(email);
                 surveyData.setAge(age);
                 surveyData.setSex(sex);
                 surveyData.setFavGameType(favGameType);
-                surveyData.setFavGameEx(favGameEx);
                 surveyData.setQuestion1(question1);
                 surveyData.setQuestion2(question2);
                 surveyData.setQuestion3(question3);
@@ -493,14 +441,142 @@ public class MenuActivity  extends AppCompatActivity {
                 surveyData.setAdvice(advice);
                 surveyData.setDate(date);
                 surveyData.setTime(time);
+                surveyData.setUnique_id(unique_id);
 
                 surveyDataArrayList.add(surveyData);
             }
             curCSV.close();
+            SharedPreferences.Editor editor = shared.edit();
+//            editor = shared.edit();
+            editor.putInt("query_position", Integer.parseInt(lastId));
+            editor.commit();
+            Log.e("After position", lastId);
         }
         catch(Exception e){
             e.printStackTrace();
             Log.e("query error !", e.getMessage().toString());
         }
     }
+
+//    private void RetrieveAllSurveyData(){
+//        DBHelper dbhelper = new DBHelper(getApplicationContext());
+//        try
+//        {
+////            SharedPreferences.Editor editor = shared.edit();
+////            editor.clear();
+////            editor.commit();
+////            int number = shared.getInt("query_position", -1);
+////            String query_position = (number)+"";
+////            Log.e("Before position", query_position);
+//            SQLiteDatabase db = dbhelper.getReadableDatabase();
+////            Cursor curCSV = db.rawQuery("SELECT * FROM surveydata WHERE " + SurveyData.Column.ID + ">" + query_position + "", null);
+//            Cursor curCSV = db.rawQuery("SELECT * FROM surveydata ", null);
+////            Log.e("QUERY DATA ", "SELECT * FROM surveydata WHERE " + SurveyData.Column.ID + "=" + query_position + "");
+//            surveyDataArrayList = new ArrayList<>();
+////            String lastId= number+"";
+//            while(curCSV.moveToNext())
+//            {
+//                //Which column you want to exprort
+//                surveyData = new SurveyData();
+//
+//                byte[] bytes = null;
+////                bytes = curCSV.getString(0).getBytes();
+////                lastId = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(1).getBytes();
+//                String email= new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(2).getBytes();
+//                String age= new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(3).getBytes();
+//                String sex= new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(4).getBytes();
+//                String favGameType = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(5).getBytes();
+//                String question1 = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(6).getBytes();
+//                String question2 = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(7).getBytes();
+//                String question3 = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(8).getBytes();
+//                String question4 = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(9).getBytes();
+//                String question5 = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(10).getBytes();
+//                String question6 = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(11).getBytes();
+//                String question7 = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(12).getBytes();
+//                String question8 = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(13).getBytes();
+//                String paid = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(14).getBytes();
+//                String bubble = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(15).getBytes();
+//                String likeGame = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(16).getBytes();
+//                String everPaid = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(17).getBytes();
+//                String advice = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(18).getBytes();
+//                String date = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(19).getBytes();
+//                String time = new String(bytes, "UTF-8");
+//
+//                bytes = curCSV.getString(20).getBytes();
+//                String unique_id = new String(bytes, "UTF-8");
+//
+//                surveyData.setId(Integer.parseInt(curCSV.getString(0)));
+//                surveyData.setEmail(email);
+//                surveyData.setAge(age);
+//                surveyData.setSex(sex);
+//                surveyData.setFavGameType(favGameType);
+//                surveyData.setQuestion1(question1);
+//                surveyData.setQuestion2(question2);
+//                surveyData.setQuestion3(question3);
+//                surveyData.setQuestion4(question4);
+//                surveyData.setQuestion5(question5);
+//                surveyData.setQuestion6(question6);
+//                surveyData.setQuestion7(question7);
+//                surveyData.setQuestion8(question8);
+//                surveyData.setPaid(paid);
+//                surveyData.setBubbleClick(bubble);
+//                surveyData.setLikeGame(likeGame);
+//                surveyData.setEverPaid(everPaid);
+//                surveyData.setAdvice(advice);
+//                surveyData.setDate(date);
+//                surveyData.setTime(time);
+//                surveyData.setUnique_id(unique_id);
+//
+//                surveyDataArrayList.add(surveyData);
+//            }
+//            curCSV.close();
+////            SharedPreferences.Editor editor = shared.edit();
+//////            editor = shared.edit();
+////            editor.putInt("query_position", Integer.parseInt(lastId));
+////            editor.commit();
+////            Log.e("After position", lastId);
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//            Log.e("query error !", e.getMessage().toString());
+//        }
+//    }
 }

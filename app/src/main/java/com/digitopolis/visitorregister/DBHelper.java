@@ -13,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private final String TAG = getClass().getSimpleName();
 
-    private SQLiteDatabase sqLiteDatabase;
+        private SQLiteDatabase sqLiteDatabase;
 
     public DBHelper(Context context) {
         super(context, SurveyData.DATABASE_NAME, null, 1);
@@ -27,16 +27,15 @@ public class DBHelper extends SQLiteOpenHelper {
         String CREATE_TEST_TABLE = String.format("CREATE TABLE %s " +
                         "(%s INTEGER PRIMARY KEY  AUTOINCREMENT," +
                         " %s EMAIL,%s AGE,%s SEX,%s FAV_GAME_TYPE," +
-                        " %s FAV_GAME_EX,%s QUESTION_1,%s QUESTION_2,%s QUESTION_3," +
+                        " %s QUESTION_1,%s QUESTION_2,%s QUESTION_3," +
                         " %s QUESTION_4,%s QUESTION_5,%s QUESTION_6,%s QUESTION_7,%s QUESTION_8," +
-                        " %s PAID,%s BUBBLE_CLICK,%s LIKE_GAME,%s EVER_PAID,%s ADVICE,%s DATE,%s TIME)",
+                        " %s PAID,%s BUBBLE_CLICK,%s LIKE_GAME,%s EVER_PAID,%s ADVICE,%s DATE,%s TIME, %s UNIQUE_ID)",
                 SurveyData.TABLE,
                 SurveyData.Column.ID,
                 SurveyData.Column.EMAIL,
                 SurveyData.Column.AGE,
                 SurveyData.Column.SEX,
                 SurveyData.Column.FAV_GAME_TYPE,
-                SurveyData.Column.FAV_GAME_EX,
                 SurveyData.Column.QUESTION_1,
                 SurveyData.Column.QUESTION_2,
                 SurveyData.Column.QUESTION_3,
@@ -51,7 +50,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 SurveyData.Column.EVER_PAID,
                 SurveyData.Column.ADVICE,
                 SurveyData.Column.DATE,
-                SurveyData.Column.TIME
+                SurveyData.Column.TIME,
+                SurveyData.Column.UNIQUE_ID
         );
 
         Log.e("dfghujik", CREATE_TEST_TABLE);
@@ -104,7 +104,6 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(SurveyData.Column.AGE, surveyData.getAge());
         values.put(SurveyData.Column.SEX, surveyData.getSex());
         values.put(SurveyData.Column.FAV_GAME_TYPE, surveyData.getFavGameType());
-        values.put(SurveyData.Column.FAV_GAME_EX, surveyData.getFavGameEx());
         values.put(SurveyData.Column.QUESTION_1, surveyData.getQuestion1());
         values.put(SurveyData.Column.QUESTION_2, surveyData.getQuestion2());
         values.put(SurveyData.Column.QUESTION_3, surveyData.getQuestion3());
@@ -120,6 +119,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(SurveyData.Column.ADVICE, surveyData.getAdvice());
         values.put(SurveyData.Column.DATE, surveyData.getDate());
         values.put(SurveyData.Column.TIME, surveyData.getTime());
+        values.put(SurveyData.Column.UNIQUE_ID, surveyData.getUnique_id());
         Log.e("asdfsadf", "asdfsadf");
         sqLiteDatabase.insert(SurveyData.TABLE, null, values);
 
