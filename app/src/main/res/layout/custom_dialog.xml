@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radio_group"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Device"
+            android:id="@+id/radioButton1"
+            android:textColor="#D74F15"
+            android:textSize="24dp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Server"
+            android:id="@+id/radioButton2"
+            android:textColor="#D74F15"
+            android:textSize="24dp"
+            android:layout_marginTop="5dp"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="ยกเลิก"
+            android:id="@+id/button2"
+            android:layout_weight="1"
+            android:background="#D74F15"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="ยืนยัน"
+            android:id="@+id/button3"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:background="#D74F15"
+            android:textSize="22dp"/>
+    </LinearLayout>
+</LinearLayout>

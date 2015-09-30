@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        Log.e("pro","create");
+        Log.e("pro", "create");
 
         String CREATE_TEST_TABLE = String.format("CREATE TABLE %s " +
                         "(%s INTEGER PRIMARY KEY  AUTOINCREMENT," +
@@ -95,6 +95,20 @@ public class DBHelper extends SQLiteOpenHelper {
         return surveyStr;
     }*/
 
+    public void deleteSurveyData(String id){
+        Log.e("ID INDEX DELETE", id);
+        sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete("surveydata", SurveyData.Column.ID+" = "+id, null);
+        sqLiteDatabase.close();
+    }
+
+    public void deleteAllSurveyData(){
+        sqLiteDatabase = this.getWritableDatabase();
+        String sql = String.format("DELETE FROM surveydata");
+        sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.close();
+    }
+
     public void addSurveyData(SurveyData surveyData) {
         sqLiteDatabase = this.getWritableDatabase();
 
@@ -120,7 +134,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(SurveyData.Column.DATE, surveyData.getDate());
         values.put(SurveyData.Column.TIME, surveyData.getTime());
         values.put(SurveyData.Column.UNIQUE_ID, surveyData.getUnique_id());
-        Log.e("asdfsadf", "asdfsadf");
+        Log.e("Client insert db status", "Success !");
         sqLiteDatabase.insert(SurveyData.TABLE, null, values);
 
         sqLiteDatabase.close();

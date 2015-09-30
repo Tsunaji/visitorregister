@@ -5,30 +5,65 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:src="@drawable/digi_survey_h"
-        android:scaleType="centerCrop"
+        android:src="@drawable/swappysurvey_h"
+        android:scaleType="fitXY"
         android:adjustViewBounds="true"
-        android:layout_weight="1"
+        android:layout_weight="2"
         />
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/selector_survey"
-        android:layout_weight="3"
-        android:onClick="eventSurvey"/>
-    <Button
-        android:layout_width="wrap_content"
+        android:layout_weight="1.5">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_survey"
+            android:layout_weight="1"
+            android:onClick="eventSurvey"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_export"
+            android:layout_weight="1"
+            android:onClick="selectExportMode"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/selector_export"
-        android:layout_weight="3"
-        android:onClick="exportCSV"/>
-    <Button
-        android:layout_width="wrap_content"
+        android:layout_weight="1.5">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_upload"
+            android:layout_weight="1"
+            android:onClick="eventUpload"
+            android:scaleType="fitXY"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/button3"
+            android:layout_weight="1"
+            android:onClick="manageData"
+            android:background="@drawable/selector_manage" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/selector_upload"
-        android:layout_weight="3"
-        android:onClick="eventUpload"/>
+        android:id="@+id/imageView"
+        android:src="@drawable/swappysurvey_lower"
+        android:layout_weight="1"
+        android:scaleType="fitXY" />
 </LinearLayout>

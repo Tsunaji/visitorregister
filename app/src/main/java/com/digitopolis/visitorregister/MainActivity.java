@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.e("VERSION : ", "1.0");
         InitInitial();
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -152,21 +151,9 @@ public class MainActivity extends AppCompatActivity {
 
             Boolean check = true;
             for(int i=0;i<Data.length;i++){
-                if(Data[i]== "" && i!=Data.length-1){
+                if((Data[i]== "" || Data[i].isEmpty() || Data[i]== null)&& i!=Data.length-1){
                     Log.e("Input error !", "blank data");
                     check = false;
-                    AlertDialog.Builder builder =
-                            new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle("Error");
-                    builder.setMessage("กรอกข้อมูลไม่ครบ กรุณาตรวจสอบใหม่อีกครั้ง");
-                    builder.setNegativeButton(getString(android.R.string.ok),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                    builder.show();
                 }
             }
 
@@ -184,6 +171,20 @@ public class MainActivity extends AppCompatActivity {
                                 finish();
                                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                                 startActivity(intent);
+                            }
+                        });
+                builder.show();
+            }
+            else{
+                AlertDialog.Builder builder =
+                        new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Error");
+                builder.setMessage("กรอกข้อมูลไม่ครบ กรุณาตรวจสอบใหม่อีกครั้ง");
+                builder.setNegativeButton(getString(android.R.string.ok),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
                             }
                         });
                 builder.show();

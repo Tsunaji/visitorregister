@@ -48,8 +48,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="* จำเป็นต้องกรอก"
+                    android:textColor="#DE111B"
+                    android:id="@+id/textView21"
+                    android:layout_marginTop="0dp" />
+
+                <TextView android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/text"
-                    android:id="@+id/textView2" />
+                    android:id="@+id/textView2"
+                    android:layout_marginTop="12dp" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -120,14 +130,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="ชาย"
                                 android:id="@+id/radioButton"
-                                android:layout_marginLeft="10dp" />
+                                android:layout_marginLeft="20dp" />
 
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="หญิง"
                                 android:id="@+id/radioButton2"
-                                android:layout_marginLeft="10dp" />
+                                android:layout_marginLeft="20dp" />
                         </RadioGroup>
 
                     </LinearLayout>
@@ -177,35 +187,35 @@
                         android:layout_height="wrap_content"
                         android:text="5"
                         android:id="@+id/radioButton3"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
                         android:id="@+id/radioButton4"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
                         android:id="@+id/radioButton5"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
                         android:id="@+id/radioButton6"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:id="@+id/radioButton7"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
                 </RadioGroup>
 
                 <TextView android:textSize="20dp"
@@ -229,35 +239,35 @@
                         android:layout_height="wrap_content"
                         android:text="5"
                         android:id="@+id/radioButton8"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
                         android:id="@+id/radioButton9"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
                         android:id="@+id/radioButton10"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
                         android:id="@+id/radioButton11"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:id="@+id/radioButton12"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
                 </RadioGroup>
 
                 <TextView android:textSize="20dp"
@@ -281,35 +291,35 @@
                         android:layout_height="wrap_content"
                         android:text="5"
                         android:id="@+id/radioButton13"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
                         android:id="@+id/radioButton14"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
                         android:id="@+id/radioButton15"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
                         android:id="@+id/radioButton16"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:id="@+id/radioButton17"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
                 </RadioGroup>
 
                 <TextView android:textSize="20dp"
@@ -333,35 +343,35 @@
                         android:layout_height="wrap_content"
                         android:text="5"
                         android:id="@+id/radioButton18"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
                         android:id="@+id/radioButton19"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
                         android:id="@+id/radioButton20"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
                         android:id="@+id/radioButton21"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:id="@+id/radioButton22"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
                 </RadioGroup>
 
                 <TextView android:textSize="20dp"
@@ -385,35 +395,35 @@
                         android:layout_height="wrap_content"
                         android:text="5"
                         android:id="@+id/radioButton23"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
                         android:id="@+id/radioButton24"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
                         android:id="@+id/radioButton25"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
                         android:id="@+id/radioButton26"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:id="@+id/radioButton27"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
                 </RadioGroup>
 
                 <TextView android:textSize="20dp"
@@ -437,35 +447,35 @@
                         android:layout_height="wrap_content"
                         android:text="5"
                         android:id="@+id/radioButton28"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
                         android:id="@+id/radioButton29"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
                         android:id="@+id/radioButton30"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
                         android:id="@+id/radioButton31"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:id="@+id/radioButton32"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
                 </RadioGroup>
 
                 <TextView android:textSize="20dp"
@@ -489,35 +499,35 @@
                         android:layout_height="wrap_content"
                         android:text="5"
                         android:id="@+id/radioButton33"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
                         android:id="@+id/radioButton34"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
                         android:id="@+id/radioButton35"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
                         android:id="@+id/radioButton36"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:id="@+id/radioButton37"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
                 </RadioGroup>
 
                 <TextView android:textSize="20dp"
@@ -541,35 +551,35 @@
                         android:layout_height="wrap_content"
                         android:text="5"
                         android:id="@+id/radioButton38"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
                         android:id="@+id/radioButton39"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
                         android:id="@+id/radioButton40"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
                         android:id="@+id/radioButton41"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:id="@+id/radioButton42"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="20dp" />
                 </RadioGroup>
 
                 <TextView android:textSize="20dp"
@@ -646,15 +656,6 @@
                     android:id="@+id/editText9"
                     android:lines="1"
                     android:singleLine="true" />
-
-                <TextView android:textSize="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="* จำเป็นต้องกรอก"
-                    android:textColor="#DE111B"
-                    android:id="@+id/textView21"
-                    android:layout_marginTop="12dp" />
 
                 <Button
                     android:layout_width="wrap_content"
