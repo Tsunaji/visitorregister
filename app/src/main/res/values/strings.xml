@@ -6,7 +6,7 @@
     <string name="text">อีเมล<font color="red">*</font></string>
     <string name="text2">อายุ<font color="red">*</font></string>
     <string name="text3">เพศ<font color="red">*</font></string>
-    <string name="text4">ประเภทเกมที่ชอบเล่นบน Mobile<font color="red">*</font></string>
+    <string name="text4">ประเภทเกมที่ชอบเล่นบน Mobile (เช่น arcade, puzzle, mmo, fps)<font color="red">*</font></string>
     <string name="text5">ยกตัวอย่างเกมที่ชื่นชอบบน Mobile (1-3เกม)<font color="red">*</font></string>
     <string name="text6">ความรู้สึกในการเล่นเกมนี้ครั้งแรก 5(มากที่สุด) 1(น้อยที่สุด) <font color="red">*</font> </string>
     <string name="text7">คุณจะจ่ายเงินซื้อ Item ในเกมหรือไม่<font color="red">*</font></string>

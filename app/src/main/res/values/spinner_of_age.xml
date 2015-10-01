@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="age_spiner_array">
+        <item>น้อยกว่า 15</item>
+        <item>15-19</item>
+        <item>20-29</item>
+        <item>30-39</item>
+        <item>40-49</item>
+        <item>มากกว่า 50</item>
+    </string-array>
+</resources>

@@ -22,14 +22,14 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        Log.e("pro", "create");
+        Log.e("pro","create");
 
         String CREATE_TEST_TABLE = String.format("CREATE TABLE %s " +
                         "(%s INTEGER PRIMARY KEY  AUTOINCREMENT," +
                         " %s EMAIL,%s AGE,%s SEX,%s FAV_GAME_TYPE," +
                         " %s QUESTION_1,%s QUESTION_2,%s QUESTION_3," +
                         " %s QUESTION_4,%s QUESTION_5,%s QUESTION_6,%s QUESTION_7,%s QUESTION_8," +
-                        " %s PAID,%s BUBBLE_CLICK,%s LIKE_GAME,%s EVER_PAID,%s ADVICE,%s DATE,%s TIME, %s UNIQUE_ID)",
+                        " %s PAID,%s BUBBLE_CLICK,%s LIKE_GAME,%s EVER_PAID,%s ADVICE,%s DATE,%s TIME, %s UNIQUE_ID, %s EVENT_NAME)",
                 SurveyData.TABLE,
                 SurveyData.Column.ID,
                 SurveyData.Column.EMAIL,
@@ -51,10 +51,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 SurveyData.Column.ADVICE,
                 SurveyData.Column.DATE,
                 SurveyData.Column.TIME,
-                SurveyData.Column.UNIQUE_ID
+                SurveyData.Column.UNIQUE_ID,
+                SurveyData.Column.EVENT_NAME
         );
 
-        Log.e("dfghujik", CREATE_TEST_TABLE);
+        Log.e("SQL CREATE TABLE : ", CREATE_TEST_TABLE);
 
         db.execSQL(CREATE_TEST_TABLE);
     }
@@ -102,6 +103,13 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
+    public void deleteSurveyEvent(String event){
+        sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete("surveydata", SurveyData.Column.EVENT_NAME+" = "+event, null);
+        sqLiteDatabase.close();
+    }
+
+
     public void deleteAllSurveyData(){
         sqLiteDatabase = this.getWritableDatabase();
         String sql = String.format("DELETE FROM surveydata");
@@ -134,10 +142,9 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(SurveyData.Column.DATE, surveyData.getDate());
         values.put(SurveyData.Column.TIME, surveyData.getTime());
         values.put(SurveyData.Column.UNIQUE_ID, surveyData.getUnique_id());
-        Log.e("Client insert db status", "Success !");
+        values.put(SurveyData.Column.EVENT_NAME, surveyData.getEvent_name());
         sqLiteDatabase.insert(SurveyData.TABLE, null, values);
 
         sqLiteDatabase.close();
     }
-
 }

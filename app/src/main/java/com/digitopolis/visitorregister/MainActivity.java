@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
@@ -19,10 +20,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -35,16 +39,22 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText email, age, favGameType, paid, bubbleClick, likeGame, everPaid, advice;
-    RadioGroup sex, q1, q2, q3, q4, q5, q6, q7, q8;
+    EditText email, favGameType, likeGame, everPaid, advice;
+//    Spinner age;
+    TextView eventNameShow;
+    RadioGroup age, sex, q1, q2, q3, q4, q5, q6, q7, q8, paid, bubbleClick;
     Button submit;
     DBHelper mHelper;
+    static String eventName = "";
     int ID = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        eventName = intent.getStringExtra("event_name");
         InitInitial();
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -96,15 +106,24 @@ public class MainActivity extends AppCompatActivity {
         email.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(email, InputMethodManager.SHOW_IMPLICIT);
+        eventNameShow = (TextView) findViewById(R.id.survey_textview_eventname);
+        eventNameShow.setText(eventName);
 
-        age = (EditText) findViewById(R.id.editText3);
+//        age = (Spinner) findViewById(R.id.spinner);
+//        // Create an ArrayAdapter using the string array and a default spinner layout
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.age_spiner_array, android.R.layout.simple_spinner_item);
+//// Specify the layout to use when the list of choices appears
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//// Apply the adapter to the spinner
+//        age.setAdapter(adapter);
+
         favGameType = (EditText) findViewById(R.id.editText4);
-        paid = (EditText) findViewById(R.id.editText2);
-        bubbleClick = (EditText) findViewById(R.id.editText6);
         likeGame = (EditText) findViewById(R.id.editText7);
         everPaid = (EditText) findViewById(R.id.editText8);
         advice = (EditText) findViewById(R.id.editText9);
 
+        age = (RadioGroup) findViewById(R.id.radio_group12);
         sex = (RadioGroup) findViewById(R.id.radio_group);
         q1 = (RadioGroup) findViewById(R.id.radio_group2);
         q2 = (RadioGroup) findViewById(R.id.radio_group3);
@@ -114,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
         q6 = (RadioGroup) findViewById(R.id.radio_group7);
         q7 = (RadioGroup) findViewById(R.id.radio_group8);
         q8 = (RadioGroup) findViewById(R.id.radio_group9);
+        paid = (RadioGroup) findViewById(R.id.radio_group10);
+        bubbleClick = (RadioGroup) findViewById(R.id.radio_group11);
 
         submit = (Button) findViewById(R.id.button);
     }
@@ -129,9 +150,12 @@ public class MainActivity extends AppCompatActivity {
             RadioButton radiobutton7 = (RadioButton) findViewById(q6.getCheckedRadioButtonId());
             RadioButton radiobutton8 = (RadioButton) findViewById(q7.getCheckedRadioButtonId());
             RadioButton radiobutton9 = (RadioButton) findViewById(q8.getCheckedRadioButtonId());
+            RadioButton radiobutton10 = (RadioButton) findViewById(paid.getCheckedRadioButtonId());
+            RadioButton radiobutton11 = (RadioButton) findViewById(bubbleClick.getCheckedRadioButtonId());
+            RadioButton radiobutton12 = (RadioButton) findViewById(age.getCheckedRadioButtonId());
 
             String Data[]={email.getText().toString(),
-                    age.getText().toString(),
+                    radiobutton12.getText().toString(),
                     radiobutton.getText().toString(),
                     favGameType.getText().toString(),
                     radiobutton2.getText().toString(),
@@ -142,8 +166,8 @@ public class MainActivity extends AppCompatActivity {
                     radiobutton7.getText().toString(),
                     radiobutton8.getText().toString(),
                     radiobutton9.getText().toString(),
-                    paid.getText().toString(),
-                    bubbleClick.getText().toString(),
+                    radiobutton10.getText().toString(),
+                    radiobutton11.getText().toString(),
                     likeGame.getText().toString(),
                     everPaid.getText().toString(),
                     advice.getText().toString()};
@@ -170,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                                 dialog.cancel();
                                 finish();
                                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                intent.putExtra("event_name",eventName);
                                 startActivity(intent);
                             }
                         });
@@ -241,6 +266,8 @@ public class MainActivity extends AppCompatActivity {
         surveyData.setDate(formattedDate);
         surveyData.setTime(formattedTime);
         surveyData.setUnique_id(android_id);
+        surveyData.setEvent_name(eventName);
+
         if (ID == -1) {
             mHelper.addSurveyData(surveyData);
         } else {

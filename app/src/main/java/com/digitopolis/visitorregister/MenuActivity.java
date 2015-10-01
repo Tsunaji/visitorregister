@@ -67,7 +67,9 @@ public class MenuActivity  extends AppCompatActivity {
     }
 
     public void eventSurvey(View view){
-        Intent intent = new Intent(MenuActivity.this,MainActivity.class);
+
+
+        Intent intent = new Intent(MenuActivity.this,ViewEventData.class);
         startActivity(intent);
     }
 
@@ -85,7 +87,9 @@ public class MenuActivity  extends AppCompatActivity {
     }
 
     public void selectExportMode(View view){
+
         dialog = new Dialog(MenuActivity.this);
+
         dialog.setContentView(R.layout.custom_dialog);
         dialog.setTitle("Export(.CSV)จากอะไร");
         radioGroup = (RadioGroup) dialog.findViewById(R.id.radio_group);
@@ -96,6 +100,7 @@ public class MenuActivity  extends AppCompatActivity {
             public void onClick(View v) {
 
                 dialog.dismiss();
+
             }
         });
 
@@ -145,7 +150,6 @@ public class MenuActivity  extends AppCompatActivity {
                 byte[] bytes = null;
                 bytes = curCSV.getString(1).getBytes();
                 String email= new String(bytes, "UTF-8");
-                Log.e("SSS",email);
 
                 bytes = curCSV.getString(2).getBytes();
                 String age= new String(bytes, "UTF-8");
@@ -204,9 +208,12 @@ public class MenuActivity  extends AppCompatActivity {
                 bytes = curCSV.getString(20).getBytes();
                 String unique_id = new String(bytes, "UTF-8");
 
+                bytes = curCSV.getString(21).getBytes();
+                String event_name = new String(bytes, "UTF-8");
+
                 String arrStr[] ={curCSV.getString(0),email,age,sex,favGameType,question1,question2,
                         question3,question4,question5,question6,question7,question8,paid,bubble,likeGame,
-                        everPaid,advice,date,time,unique_id};
+                        everPaid,advice,date,time,unique_id,event_name};
 
                 csvWrite.writeNext(arrStr);
             }
@@ -242,8 +249,6 @@ public class MenuActivity  extends AppCompatActivity {
                 byte[] bytes = null;
                 bytes =jsonObject.getString("email").getBytes();
                 String email= new String(bytes, "UTF-8");
-
-                Log.e("ddddd",email);
 
                 bytes =jsonObject.getString("age").getBytes();
                 String age= new String(bytes, "UTF-8");
@@ -301,10 +306,14 @@ public class MenuActivity  extends AppCompatActivity {
 
                 bytes =jsonObject.getString("unique_id").getBytes();
                 String unique_id = new String(bytes, "UTF-8");
+
+                bytes =jsonObject.getString("event_name").getBytes();
+                String event_name = new String(bytes, "UTF-8");
+
                 String arrStr[] ={jsonObject.getString(SurveyData.Column.ID),email,age,sex,favGameType,question1,question2,
                         question3,question4,question5,question6,question7,question8,paid,bubble,likeGame,
-                        everPaid,advice,date,time,unique_id};
-                Log.e("String Json", arrStr[3]);
+                        everPaid,advice,date,time,unique_id,event_name};
+
                 csvWrite.writeNext(arrStr);
             }
             csvWrite.close();
@@ -387,14 +396,12 @@ public class MenuActivity  extends AppCompatActivity {
                     jsonObject.put("date", surveyDataArrayList.get(i).getDate());
                     jsonObject.put("time", surveyDataArrayList.get(i).getTime());
                     jsonObject.put("unique_id", surveyDataArrayList.get(i).getUnique_id());
+                    jsonObject.put("event_name", surveyDataArrayList.get(i).getEvent_name());
                     jsonArray.put(jsonObject);
                 }
 
                 JSONObject jsonObject1 = new JSONObject();
                 jsonObject1.put("survey_data", jsonArray);
-
-//                JSONObject jsonObject2 = new JSONObject();
-//                jsonObject2.put("Test", "TEST");
 
                 URL object = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) object.openConnection();
@@ -705,6 +712,9 @@ public class MenuActivity  extends AppCompatActivity {
                 bytes = curCSV.getString(20).getBytes();
                 String unique_id = new String(bytes, "UTF-8");
 
+                bytes = curCSV.getString(21).getBytes();
+                String event_name = new String(bytes, "UTF-8");
+
                 surveyData.setId(Integer.parseInt(curCSV.getString(0)));
                 surveyData.setEmail(email);
                 surveyData.setAge(age);
@@ -726,6 +736,7 @@ public class MenuActivity  extends AppCompatActivity {
                 surveyData.setDate(date);
                 surveyData.setTime(time);
                 surveyData.setUnique_id(unique_id);
+                surveyData.setEvent_name(event_name);
 
                 surveyDataArrayList.add(surveyData);
             }

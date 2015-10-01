@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="New"
+        android:id="@+id/event_name"
+        android:layout_weight="6"
+        android:textSize="24dp"
+        android:layout_marginLeft="12dp"
+        android:singleLine="true"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginRight="20dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView4"
+            android:src="@drawable/but_minus"
+            android:foregroundGravity="center_vertical|center_horizontal"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_horizontal"
+            android:clickable="false"
+            android:saveEnabled="false"
+            />
+    </LinearLayout>
+</LinearLayout>

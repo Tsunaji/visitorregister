@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 public class SurveyData {
 
     public static final String DATABASE_NAME = "visitorregister.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String TABLE = "surveydata";
 
     public class Column {
@@ -33,6 +33,7 @@ public class SurveyData {
         public static final String DATE = "'วัน'";
         public static final String TIME = "'เวลา'";
         public static final String UNIQUE_ID = "'unique_id'";
+        public static final String EVENT_NAME = "'event_name'";
     }
 
     private int id;
@@ -56,6 +57,15 @@ public class SurveyData {
     private String date;
     private String time;
     private String unique_id;
+    private String event_name;
+
+    public void setEvent_name(String event_name) {
+        this.event_name = event_name;
+    }
+
+    public String getEvent_name() {
+        return event_name;
+    }
 
     public String getUnique_id() {
         return unique_id;
