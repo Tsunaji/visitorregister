@@ -241,7 +241,7 @@ public class MenuActivity  extends AppCompatActivity {
             file.createNewFile();
             JSONArray jsonArray = new JSONArray(reponseString);
             CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
-
+            csvWrite.writeNext(new SurveyData().getColumn());
             for(int i =0;i<jsonArray.length();i++)
             {
                 //Which column you want to exprort

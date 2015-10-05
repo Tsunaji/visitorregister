@@ -11,6 +11,7 @@ public class SurveyData {
     public static final int DATABASE_VERSION = 2;
     public static final String TABLE = "surveydata";
 
+
     public class Column {
         public static final String ID = BaseColumns._ID;
         public static final String EMAIL = "'อีเมล'";
@@ -34,6 +35,8 @@ public class SurveyData {
         public static final String TIME = "'เวลา'";
         public static final String UNIQUE_ID = "'unique_id'";
         public static final String EVENT_NAME = "'event_name'";
+
+
     }
 
     private int id;
@@ -58,6 +61,14 @@ public class SurveyData {
     private String time;
     private String unique_id;
     private String event_name;
+
+    public String[] getColumn(){
+        String[] arr = {Column.ID,Column.EMAIL,Column.AGE,Column.SEX,Column.FAV_GAME_TYPE,Column.QUESTION_1
+                ,Column.QUESTION_2,Column.QUESTION_3,Column.QUESTION_4,Column.QUESTION_5,Column.QUESTION_6
+                ,Column.QUESTION_7,Column.QUESTION_8,Column.PAID,Column.BUBBLE_CLICK,Column.LIKE_GAME
+                ,Column.EVER_PAID,Column.ADVICE,Column.DATE,Column.TIME,Column.UNIQUE_ID,Column.EVENT_NAME};
+        return arr;
+    }
 
     public void setEvent_name(String event_name) {
         this.event_name = event_name;
