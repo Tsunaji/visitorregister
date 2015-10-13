@@ -415,9 +415,6 @@ public class MenuActivity  extends AppCompatActivity {
                 con.setRequestProperty("Content-Type", "application/json;charset=utf-8");
                 con.setRequestProperty("Accept", "application/json;charset=utf-8");
 
-                //open
-                con.connect();
-
                 //Send request
                 OutputStreamWriter writer = new OutputStreamWriter(con.getOutputStream());
                 String data = jsonArray.toString();
@@ -437,6 +434,9 @@ public class MenuActivity  extends AppCompatActivity {
                 rd.close();
 
                 Log.e("Response ", response.toString() + ", Connect status : "+con.getResponseCode());
+
+                //open
+
 
             } catch (Exception e) {
                 e.printStackTrace();
